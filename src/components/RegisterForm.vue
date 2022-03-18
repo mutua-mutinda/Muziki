@@ -20,9 +20,9 @@
                   </div>
 
                   <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700" > Age </label>
+                    <label for="age" class="block text-sm font-medium text-gray-700" > Age </label>
                     <div class="mt-1">
-                      <vee-field name="age" type="number" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                      <vee-field name="age" type="text" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
                       <ErrorMessage class="text-red-600" name="age" />
                     </div>
                   </div>
@@ -49,7 +49,7 @@
                   </div>
 
                   <div>
-                    <button type="submit" class=" w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm                        font-medium                        text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
+                    <button v-show="!reg_show_error" type="submit" class=" w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
                       :class="[ reg_in_submission ? 'bg-gray-400 hover:bg-slate-400' : '', ]"
                       :disabled="reg_in_submission" >
                       <svg v-if="reg_show_alert" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" >
@@ -58,6 +58,10 @@
                       </svg>
                       {{ reg_show_alert ? "Processing..." : "Register" }}
                     </button>
+
+                    <div v-show="reg_show_error" class="mt-5 flex items-center justify-center p-4 rounded-lg bg-red-50 animate-pulse duration-200">
+                      <p class="text-red-600 text-sm">Unexepted Error Occurred</p>
+                    </div>
                   </div>
                 </vee-form>
 
@@ -80,6 +84,8 @@
 </template>
 
 <script>
+
+
 export default {
     name: 'RegisterForm',
    
@@ -96,14 +102,38 @@ export default {
 
       reg_in_submission: false,
       reg_show_alert: false,
+      reg_show_error: false,
 
     };
     }, 
     methods: {
 
-    register(values) {
+    async register(values) {
       this.reg_in_submission = true;
       this.reg_show_alert = true;
+
+
+      try {
+        await this.$store.dispatch('register', values)
+
+        setTimeout(() => {
+             this.reg_in_submission = false;
+             this.reg_show_alert = false;
+   
+            }, 2000)
+
+      } catch(error) {
+        this.reg_in_submission = false;
+        this.reg_show_alert = false;
+        this.reg_show_error = true
+        setTimeout(() => {
+          this.reg_show_error = false
+        }, 3000)
+        return;
+      }
+
+      window.location.reload();
+       
     },
   },
 
