@@ -21,5 +21,20 @@ auth.onAuthStateChanged(() => {
     }
 })
 
+router.beforeEach((to, from, next) => {
+    if (!to.matched.some(record => record.meta.requiresAuth)) {
+        next();
+        return;
+    }
+    if(!store.state.userLoggedIn ) {
+        next({name: "Home"})
+        return;
+
+    }
+    else {
+        next();
+        return;
+    }
+})
 
 

@@ -1,9 +1,8 @@
 <template>
     <!-- Introduction -->
   <section class="mb-8 py-20 text-white text-center relative">
-    <div class="absolute inset-0 w-full h-full bg-contain introduction-bg">
-      <img class="min-h-full w-auto" src="/src/assets/img/header.png" alt="" />
-    </div>
+    <div class="absolute inset-0 w-full h-full bg-contain introduction-bg"
+      style="background-image: url(/src/assets/img/header.png)"></div>
     <div class="container mx-auto">
       <div class="text-white main-header-content">
         <h1 class="font-bold text-5xl mb-5">Listen to Great Music!</h1>

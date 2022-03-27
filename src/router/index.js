@@ -1,25 +1,32 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomePage from '/src/views/Home.vue'
-import Manage from '/src/views/Manage.vue'
 
 
 const routes = [
   {
       path: '/',
       name: "Home",
-      component: HomePage
+      component: () => import('/src/views/Home.vue')
   },
   {
     path: '/manage',
     name: "Manage",
-    component: Manage
-},
+    meta:{requiresAuth: true},
+    component: () => import('/src/views/Manage.vue')
+  },
+  {
+      path: '/:catchAll(.*)*',
+      name: "404",
+      component: () => import('/src/views/404.vue')
+  }
 ]
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
-    linkExactActiveClass: 'text-amber-500'
+    linkExactActiveClass: 'text-amber-500',
+
 })
+
+
 
 export default router

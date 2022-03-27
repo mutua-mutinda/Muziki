@@ -20,7 +20,7 @@
           </div>
           <!--Title-->
           <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <p v-show="tab === 'login'" class=" mt-6 text-center text-3xl font-extrabold text-stone-500 font-sans " > Welcome <span class="text-amber-600">Mutua</span> </p>
+            <p v-show="tab === 'login'" class=" mt-6 text-center text-3xl font-extrabold text-stone-500 font-sans " > Welcome <span class="text-amber-600">Back</span> </p>
           </div>
 
            <div class="absolute left-0 right-0 bottom-16">
@@ -52,6 +52,8 @@
 import { mapState, mapMutations } from "vuex";
 import RegisterForm from './RegisterForm.vue';
 import LoginForm from './LoginForm.vue';
+import { auth } from '/src/includes/firebase'
+
 export default {
   components: { RegisterForm, LoginForm },
   data() {
@@ -82,10 +84,20 @@ export default {
 
   computed: {
     ...mapState(["authModalShow"]),
+    
+   
   },
 
   methods: {
     ...mapMutations(["toggleAuthModal"]),
+
+    // async fetchUser() {
+    //         const guser =  await auth.get()
+    //         console.log(guser);
+
+           
+    //     },
+    
 
     // login(values) {
     //   this.login_in_submission = true;

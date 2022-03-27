@@ -4,7 +4,7 @@ import { auth, usersCollection, } from '/src/includes/firebase'
 export default createStore({
     state:{
         authModalShow:false,
-        userLoggedIn:false
+        userLoggedIn:false,
     },
     mutations:{
         toggleAuthModal: (state) => {
@@ -12,7 +12,8 @@ export default createStore({
         },
         toggleAuth(state) {
             state.userLoggedIn = !state.userLoggedIn
-        }
+        },
+        
     },
     getters: {
         authModalShow: (state) => {
@@ -20,6 +21,7 @@ export default createStore({
         }
     },
     actions:{
+        
         async register({commit}, payload) {
             const userCred = await auth.createUserWithEmailAndPassword( payload.email, payload.password );
 

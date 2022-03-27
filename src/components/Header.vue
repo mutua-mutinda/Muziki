@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapActions } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "Header",
   
@@ -43,7 +43,16 @@ export default {
   methods: {
     ...mapMutations(["toggleAuthModal"]),
 
-    ...mapActions(['signout'])
+
+  //if the user logs out, redirect home page
+    signout() {
+      this.$store.dispatch('signout')
+
+    
+      if(this.$route.meta.requiresAuth) {
+        this.$router.push({name: 'Home'})
+      }
+    }
   },
 };
 </script>
