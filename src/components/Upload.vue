@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded border border-gray-200 relative flex flex-col">
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 relative flex flex-col">
           <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
             <span class="card-title">Upload</span>
             <i class="fas fa-upload float-right text-green-400 text-2xl"></i>
@@ -50,21 +50,26 @@ export default {
             uploads: []
         }
     },
+    props: ['addSong'],
     methods:{
         upload($event) {
             this.is_dragover =  false
 
             const files  = $event.dataTransfer ? [...$event.dataTransfer.files] : [...$event.target.files]
 
+            console.log(files);
+
+
             files.forEach((file) => {
                 if(file.type !== 'audio/mpeg') {
                     return;
-                }
+                } 
+                
 
                 const storageRef =  storage.ref();
                 const songsRef = storageRef.child(`songs/${file.name}`);
                 const task = songsRef.put( file.name, {
-                   contentType: 'audio/mpeg',
+                  contentType: 'audio/mpeg'
                 } );
 
                 const uploadIdx = this.uploads.push({
@@ -96,19 +101,21 @@ export default {
                     comment_count:0,
                   }
 
+
                   song.url = await task.snapshot.ref.getDownloadURL()
-                  await songsCollection.add(song);
+                  const songRef = await songsCollection.add(song);
+
+                  const songSnapshot = await songRef.get()
+
+                  this.addSong(songSnapshot);
 
                   this.uploads[uploadIdx].variant = 'bg-emerald-500'
                   this.uploads[uploadIdx].icon = 'fas fa-check'
                   this.uploads[uploadIdx].text_class = 'text-emerald-500'
 
                 });
-                  console.log(this.uploads[uploadIdx].current_progress);
+                  
 
-
-
-            console.log(task);
             })
 
         },

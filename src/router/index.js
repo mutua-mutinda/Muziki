@@ -14,6 +14,12 @@ const routes = [
     component: () => import('/src/views/Manage.vue')
   },
   {
+    path:'/song/:id',
+    name:'song',
+    component: () => import('/src/views/Song.vue')
+
+  },
+  {
       path: '/:catchAll(.*)*',
       name: "404",
       component: () => import('/src/views/404.vue')
