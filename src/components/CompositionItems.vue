@@ -1,7 +1,7 @@
 <template>
-    <div class="border border-gray-200 p-3 mb-4 rounded-lg shadow-sm">
+    <div class="border border-gray-200 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 p-3 mb-4 rounded-lg shadow-sm">
         <div v-show="!showForm">
-            <h4 :title="song.modified_name" class="inline-block text-md font-medium text-gray-700 capitalize truncate overflow-visible max-w-lg">{{song.modified_name}}</h4>
+            <h4 :title="song.modified_name" class="inline-block text-md font-medium text-gray-700 dark:text-gray-300 capitalize truncate overflow-visible max-w-lg">{{song.modified_name}}</h4>
             <button @click.prevent="deleteSong"  class="ml-1 py-1 px-2 text-sm rounded-full text-white bg-red-500 float-right">
                 <i class="fa fa-times"></i>
             </button>
@@ -12,17 +12,17 @@
         <div v-show="showForm">
             <vee-form :validation-schema="schema" :initial-values="song" @submit="edit">
                 <div class="mb-3">
-                <label class="inline-block mb-2 text-gray-700 text-sm">Song Title</label>
+                <label class="inline-block mb-2 text-gray-700 dark:text-gray-300 text-sm">Song Title</label>
                 <vee-field type="text" name="modified_name" @input="updateUnsavedFlag(true)"
-                    class="block w-full py-1.5 px-3 text-gray-700 text-sm border border-gray-300
+                    class="block w-full py-1.5 px-3 text-gray-700 text-sm border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300
                     transition duration-500 focus:outline-none focus:border-black rounded"
                     placeholder="Enter Song Title" />
                     <ErrorMessage class="text-red-500" name="modified_name"/>
                 </div>
                 <div class="mb-3">
-                <label class="inline-block mb-2 text-gray-700 text-sm">Genre</label>
+                <label class="inline-block mb-2 text-gray-700 dark:text-gray-300 text-sm">Genre</label>
                 <vee-field type="text" name="genre" @input="updateUnsavedFlag(true)"
-                    class="block w-full py-1.5 px-3 text-gray-700 text-sm border border-gray-300
+                    class="block w-full py-1.5 px-3 text-gray-700 text-sm border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300
                     transition duration-500 focus:outline-none focus:border-black rounded"
                     placeholder="Enter Genre" />
                     <ErrorMessage class="text-red-500" name="genre"/>

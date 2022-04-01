@@ -28,9 +28,9 @@
         </div>
 
       </div>
-        <div class="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
+        <div  class="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
           <label class="sr-only" id="headlessui-listbox-label-8">Theme</label>
-          <button type="button" id="headlessui-listbox-button-9" aria-haspopup="true" aria-expanded="false" aria-labelledby="headlessui-listbox-label-8 headlessui-listbox-button-9">
+          <button @click="toggleTheme" type="button" id="headlessui-listbox-button-9" aria-haspopup="true" aria-expanded="false" aria-labelledby="headlessui-listbox-label-8 headlessui-listbox-button-9">
             <span class="dark:hidden"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
               <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" class="fill-sky-400/20 stroke-sky-500"></path>
               <path d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836" class="stroke-sky-500"></path>
@@ -59,6 +59,11 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleAuthModal"]),
+
+    toggleTheme() {
+      this.$store.dispatch("toggleTheme");
+    },
+    
 
 
   //if the user logs out, redirect home page

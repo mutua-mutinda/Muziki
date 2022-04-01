@@ -8,7 +8,7 @@ export default createStore({
         userLoggedIn:false,
         currentSong: {},
         sound:{},
-        theme: 'light'
+        theme: {}
     },
     mutations:{
         toggleAuthModal: (state) => {
@@ -24,9 +24,10 @@ export default createStore({
                 html5:true,
             });
         },
-        toggleTheme(state) {
-            state.theme == 'light' ? 'light': 'dark'
-        }
+        SET_THEME(state, theme) {
+            state.theme = theme;
+            localStorage.theme = theme;
+        },
         
     },
     getters: {
@@ -39,6 +40,9 @@ export default createStore({
             }
 
             return false
+        },
+        getTheme: (state) => {
+            return state.theme;
         }
     },
     actions:{
@@ -97,11 +101,33 @@ export default createStore({
                 state.sound.play();
             }
         },
-        toggleTheme({commit, state}) {
-        //    if(!state.theme == 'light') {
-        //         document.
-        //    }
+        initTheme({ commit }) {
+
+            const cachedTheme = localStorage.theme ? localStorage.theme : false;
+            //  `true` if the user has set theme to `dark` on browser/OS
+            const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (cachedTheme)
+                commit('SET_THEME', cachedTheme)
+            else if (userPrefersDark)
+                commit('SET_THEME', 'dark')
+            else
+                commit('SET_THEME', 'light')
+
+        },
+        toggleTheme({ commit }) {
+
+            switch (localStorage.theme) {
+                case 'light':
+                    commit('SET_THEME', 'dark')
+                    break;
+
+                default:
+                    commit('SET_THEME', 'light')
+                    break;
+            }
         }
+        
     },
     modules:{},
 });

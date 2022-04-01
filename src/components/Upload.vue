@@ -1,14 +1,14 @@
 <template>
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 relative flex flex-col">
-          <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
+    <div class="bg-white dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-400 dark:text-gray-300 relative flex flex-col">
+          <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200 dark:border-slate-400 dark:text-gray-300">
             <span class="card-title">Upload</span>
             <i class="fas fa-upload float-right text-green-400 text-2xl"></i>
           </div>
           <div class="p-6">
             <!-- Upload Dropbox -->
             <div class="w-full px-10 py-20 rounded text-center cursor-pointer border border-dashed
-                border-gray-400 text-gray-400 transition duration-500 hover:text-white
-                hover:bg-green-400 hover:border-green-400 hover:border-solid"
+                border-gray-400 dark:border-slate-400 text-gray-400 transition duration-500 hover:text-white
+                hover:bg-emerald-400 hover:border-emerald-400 dark:hover:bg-emerald-800 hover:border-solid"
 
                 :class="{'bg-green-400 border-solid border-green-400 text-white': is_dragover}"
 
@@ -19,10 +19,10 @@
                 @dragenter.prevent.stop="is_dragover = true"
                 @dragleave.prevent.stop="is_dragover = false"
                 @drop.prevent.stop="upload($event)">
-              <h5>Drop your files here</h5>
+              <h5 class="text-gray-300 text-sm">Drop your files here</h5>
             </div>
             <input type="file" multiple @change="upload($event)">
-            <hr class="my-6" />
+            <hr class="my-6 dark:bg-slate-400" />
             <!-- Progess Bars -->
             <div class="mb-4" v-for="upload in uploads" :key="upload.name">
               <!-- File Name -->

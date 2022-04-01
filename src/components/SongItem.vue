@@ -16,7 +16,7 @@
 
      <section class="flex flex-col">
 
-      <div class="bg-slate-700 w-60 shadow-lg rounded p-2">
+      <div class="bg-white dark:bg-slate-700 w-60 shadow-lg rounded p-2">
         <div class="py-2 px-4 text-center tracking-wide grid grid-cols-3 gap-6">
             <div class="flex tools">
                 <p class="flex text-gray-400 text-sm justify-center">
@@ -71,7 +71,7 @@
         </div>
         
         <div class="p-2">
-            <router-link :to="{name: 'song', params: {id: song.docID}}" class="font-bold block text-sm text-gray-700 dark:text-gray-300 group-hover:text-amber-600">{{song.modified_name}}</router-link>
+            <router-link :to="{name: 'song', params: {id: song.docID}}" class="font-bold block text-sm text-zinc-600 dark:text-gray-300 group-hover:text-amber-600">{{song.modified_name}}</router-link>
 
             <!-- <h3 class=" text-white py-1 text-base justify-center">First instru</h3>
             <p class="text-gray-400 text-sm">By @ax-production</p> -->

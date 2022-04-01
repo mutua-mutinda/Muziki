@@ -1,7 +1,7 @@
 <template>
 
   <!-- Music Header -->
-  <section class="w-full mb-8 py-14 text-center text-white relative">
+  <section class="w-full mb-8 py-14 text-center text-white dark:text-gray-300 relative">
     <div class="absolute inset-0 w-full h-full box-border bg-contain music-bg"
       style="background-image: url(/src/assets/img/song-header.png)">
     </div>
@@ -21,22 +21,22 @@
 
   <!-- Form -->
   <section class="container mx-auto mt-6">
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 relative flex flex-col">
-      <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
+    <div class="bg-white dark:bg-slate-700 rounded-lg shadow-sm border border-gray-200 dark:border-slate-500 relative flex flex-col">
+      <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200 dark:border-slate-500">
         <!-- Comment Count -->
-        <span class="card-title text-sm text-gray-700">Comments({{song.comment_count}})</span>
+        <span class="card-title text-sm text-gray-700 dark:text-gray-300">Comments({{song.comment_count}})</span>
         <i class="fa fa-comments float-right text-emerald-400 text-xl"></i>
       </div>
       <div class="p-6">
         <vee-form :validation-schema="schema" @submit="addComment" v-if="userLoggedIn">
           <vee-field as="textarea" name="comment"
-            class="block w-full py-1.5 px-3 text-gray-700 text-sm border border-gray-300 transition
-              duration-500 focus:outline-none focus:border-black rounded mb-4"
+            class="block w-full py-1.5 px-3 text-gray-700 dark:text-white text-sm border border-gray-300 dark:border-slate-500 transition
+              duration-500 focus:outline-none focus:border-black rounded mb-4 dark:bg-slate-800"
             placeholder="Your comment here..."></vee-field>
             <ErrorMessage name="comment" class="text-red-500"/>
             <div class="inline-block">
                 <button v-show="!comment_show_error" type="submit" class=" w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " 
-                :class="[ comment_in_submission ? 'bg-gray-400 hover:bg-slate-400' : '', ]" :disabled="comment_in_submission" >
+                :class="[ comment_in_submission ? 'bg-gray-400 dark:bg-slate-800 hover:bg-slate-400' : '', ]" :disabled="comment_in_submission" >
                 <svg v-if="comment_show_alert" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" >
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" ></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" ></path>
@@ -51,7 +51,7 @@
         </vee-form>
         <!-- Sort Comments -->
         <select v-model="sort"
-          class="block mt-4 py-1.5  text-gray-700 text-sm border border-gray-300 transition
+          class="block mt-4 py-1.5  text-gray-700 dark:text-gray-300 dark:bg-slate-700 text-sm border border-gray-300 dark:border-slate-500  transition
           duration-500 focus:outline-none focus:border-black rounded">
           <option value="1">Latest</option>
           <option value="2">Oldest</option>
@@ -61,14 +61,14 @@
   </section>
   <!-- Comments -->
   <ul class="container mx-auto rounded-lg rounded-t-none shadow-sm">
-    <li  v-for="comment in sortedComments" :key="comment.docID" class="p-3 bg-gray-50 border shadow-sm rounded-lg border-gray-100">
+    <li  v-for="comment in sortedComments" :key="comment.docID" class="p-3 bg-gray-5 dark:bg-slate-700 border shadow-sm rounded-lg border-gray-100 dark:border-slate-500">
       <!-- Comment Author -->
       <div class="mb-2">
-        <div class="font-bold text-sm text-gray-700">{{comment.name}}</div>
-        <time class="text-xs text-gray-700">{{comment.datePosted}}</time>
+        <div class="font-bold text-sm text-gray-700 dark:text-gray-300">{{comment.name}}</div>
+        <time class="text-xs text-gray-700 dark:text-gray-300">{{comment.datePosted}}</time>
       </div>
 
-      <p class="text-gray-700 text-sm"> {{comment.content}}</p>
+      <p class="text-gray-700 text-sm dark:text-gray-300"> {{comment.content}}</p>
     </li>
     
   </ul>

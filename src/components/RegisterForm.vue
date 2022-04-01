@@ -1,39 +1,39 @@
 <template>
    <div v-show="tab === 'register'">
             <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-              <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+              <div class="bg-white dark:bg-slate-700 dark:border dark:border-slate-400 py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <vee-form name="name" class="space-y-6" action="#" method="POST" :validation-schema="schema" @submit="register" >
                   <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700" > Name </label>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300" > Name </label>
                     <div class="mt-1">
-                      <vee-field name="name" type="text" autocomplete="name" placeholder="Enter Name" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                      <vee-field name="name" type="text" autocomplete="name" placeholder="Enter Name" class=" appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
                       <ErrorMessage class="text-red-600" name="name" />
                     </div>
                   </div>
 
                   <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700" > Email address </label>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300" > Email address </label>
                     <div class="mt-1">
-                      <vee-field name="email" type="email" autocomplete="email" placeholder="muziki@killertunes.com" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                      <vee-field name="email" type="email" autocomplete="email" placeholder="muziki@killertunes.com" class=" appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
                       <ErrorMessage class="text-red-600" name="email" />
                     </div>
                   </div>
 
                   <div>
-                    <label for="age" class="block text-sm font-medium text-gray-700" > Age </label>
+                    <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-300" > Age </label>
                     <div class="mt-1">
-                      <vee-field name="age" type="text" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                      <vee-field name="age" type="text" class=" appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
                       <ErrorMessage class="text-red-600" name="age" />
                     </div>
                   </div>
 
                   <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700" >
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300" >
                       Password
                     </label>
                     <div class="mt-1">
                       <vee-field name="password" :bails="false" v-slot="{ field, errors }" >
-                        <input type="password" v-bind="field" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " placeholder="Enter password" />
+                        <input type="password" v-bind="field" class=" appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " placeholder="Enter password" />
                         <div class="text-red-600" v-for="error in errors" :key="error" > {{ error }} </div>
                       </vee-field>
                       <!-- <ErrorMessage class="text-red-600" name="password" /> -->
@@ -41,15 +41,15 @@
                   </div>
 
                   <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700" > Confirm Password </label>
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300" > Confirm Password </label>
                     <div class="mt-1">
-                      <vee-field name="confirmation" type="password" placeholder="confirm password" class=" appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
+                      <vee-field name="confirmation" type="password" placeholder="confirm password" class=" appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-slate-400 dark:bg-slate-700 dark:text-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " />
                       <ErrorMessage class="text-red-600" name="confirmation" />
                     </div>
                   </div>
 
                   <div>
-                    <button v-show="!reg_show_error" type="submit" class=" w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
+                    <button v-show="!reg_show_error" type="submit" class=" w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white dark:text-gray-300 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
                       :class="[ reg_in_submission ? 'bg-gray-400 hover:bg-slate-400' : '', ]"
                       :disabled="reg_in_submission" >
                       <svg v-if="reg_show_alert" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" >
@@ -60,7 +60,7 @@
                     </button>
 
                     <div v-show="reg_show_error" class="mt-5 flex items-center justify-center p-4 rounded-lg bg-red-50 animate-pulse duration-200">
-                      <p class="text-red-600 text-sm">Unexepted Error Occurred</p>
+                      <p class="text-red-500 text-sm">Unexepted Error Occurred</p>
                     </div>
                   </div>
                 </vee-form>
@@ -71,7 +71,7 @@
                       <div class="w-full border-t border-gray-300" />
                     </div>
                     <div class="relative flex justify-center text-sm">
-                      <span class="px-2 py-2 bg-white text-gray-500">
+                      <span class="px-2 py-2 bg-white dark:bg-slate-700 text-gray-500 dark:text-gray-300">
                         Already a Streamer?
                       </span>
                     </div>
