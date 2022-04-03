@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { auth, usersCollection, } from '/src/includes/firebase';
 import { Howl } from 'howler';
+import helper from '/src/includes/helper';
 
 export default createStore({
     state:{
@@ -8,7 +9,10 @@ export default createStore({
         userLoggedIn:false,
         currentSong: {},
         sound:{},
-        theme: {}
+        theme: {},
+        seek:'00:00',
+        duration: '00:00',
+        playerProgress: '0%',
     },
     mutations:{
         toggleAuthModal: (state) => {
@@ -28,6 +32,11 @@ export default createStore({
             state.theme = theme;
             localStorage.theme = theme;
         },
+        updatePosition(state) {
+            state.seek = helper.formatTime(state.sound.seek());
+            state.duration = helper.formatTime(state.sound.duration());
+            state.playerProgress = `${(state.sound.seek() / state.sound.duration()) * 100}%`
+        }
         
     },
     getters: {
@@ -84,11 +93,29 @@ export default createStore({
             commit('toggleAuth')
         },
 
-        async newSong({commit, state}, payload) {
+        async newSong({commit, state, dispatch}, payload) {
+            if (state.sound instanceof Howl) {
+                state.sound.unload();
+            }
             commit('newSong', payload);
              
              state.sound.play();
              Howler.volume(0.2);
+
+             state.sound.on('play', () => {
+                 requestAnimationFrame(() => {
+                    dispatch('progress')
+                 })
+             })
+        },
+        progress({commit, state, dispatch}) {
+            commit('updatePosition');
+
+            if(state.sound.playing()) {
+                requestAnimationFrame(() => {
+                    dispatch('progress')
+                })
+            }
         },
         async toggleAudio({state}) {
             if(!state.sound.playing) {
@@ -96,10 +123,26 @@ export default createStore({
             }
 
             if(state.sound.playing()) {
-                state.sound.pause();
+                state.sound.pause();   
             } else {
                 state.sound.play();
             }
+        },
+        updateSeek({state, dispatch}, payload) {
+            if(!state.sound.playing) {
+                return;
+            }
+
+            const {x, width} = payload.currentTarget.getBoundingClientRect();
+            const clickX = payload.clientX - x;
+            const percentage = clickX / width
+            const seconds = state.sound.duration() * percentage
+
+            state.sound.seek(seconds)
+
+            state.sound.once('seek', () => {
+                dispatch('progress')
+            })
         },
         initTheme({ commit }) {
 

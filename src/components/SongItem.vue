@@ -1,24 +1,9 @@
 <template>
-   <!-- <li class=" group flex justify-between items-center p-3 pl-6 cursor-pointer transition duration-300 hover:bg-amber-50 dark:hover:bg-amber-400" >
-        <div>
-            <router-link :to="{name: 'song', params: {id: song.docID}}" class="font-bold block text-sm text-gray-700 dark:text-gray-300 group-hover:text-amber-600">{{song.modified_name}}</router-link>
-            <span class="text-gray-500 text-sm">{{song.display_name}}</span>
-        </div>
-
-        <div class="text-gray-700 text-sm">
-            <span class="comments">
-                <i class="fa fa-comments text-gray-700 text-sm"></i>
-                {{song.comment_count}}
-            </span>
-        </div>
-    </li> -->
-
-
      <section class="flex flex-col">
 
-      <div class="bg-white dark:bg-slate-700 w-60 shadow-lg rounded p-2">
-        <div class="py-2 px-4 text-center tracking-wide grid grid-cols-3 gap-6">
-            <div class="flex tools">
+      <div class="h-24 w-56 sm:h-72 bg-white dark:bg-slate-700  shadow-lg rounded p-2">
+        <div class="py-2 flex items-center justify-between">
+            <div class="flex items-center">
                 <p class="flex text-gray-400 text-sm justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -27,16 +12,18 @@
                 <p class="text-sm text-blue-600 px-2">324</p>
             
             </div>
-            <div class="flex followers">
-                 <p class="flex text-gray-400 text-sm justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                </p>
-                <p class="text-sm text-blue-500  px-2">{{song.comment_count}}</p>
-              
-            </div>
-            <div class="flex following">
+              <div class="flex items-center">
+                <router-link custom :to="{name: 'song', params: {id: song.docID}, hash: '#comments'}" v-slot="{navigate}">
+                  <p @click="navigate" class="flex text-gray-400 text-sm justify-center cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </p>
+                  <p class="text-sm text-blue-500  px-2">{{song.comment_count}}</p>
+                
+                </router-link> 
+              </div>
+            <div class="flex items-center">
                 <p class="flex text-gray-400 text-sm justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -46,8 +33,8 @@
             
             </div>
         </div>
-        <div class="group relative">
-              <img src="src/assets/img/profile-pic.jpg" alt="">
+        <div class="group relative pb-1.5">
+              <img class="hidden sm:block" src="src/assets/img/profile-pic.jpg" alt="">
           <div class="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 duration-700 transition justify-evenly">
             
             <button class="hover:scale-110 text-white outline-none  opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
@@ -56,10 +43,8 @@
               </svg>
             </button>
 
-            <button  @click="play_single(this.instru)" class="hover:scale-110 text-white outline-none opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
-              <svg v-if="this.is_playing == false" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
-              </svg>
+            <button @click.prevent="newSong(song)"  class="hover:scale-110 text-white outline-none opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
+              <i :class="{'fa-play': !playing, 'fa-pause': playing}" class="fa flex items-center justify-center text-md text-gray-800 rounded-full bg-white w-10 h-10"></i>
             </button>
 
             <button class="hover:scale-110 text-white outline-none opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
@@ -70,11 +55,8 @@
           </div>
         </div>
         
-        <div class="p-2">
-            <router-link :to="{name: 'song', params: {id: song.docID}}" class="font-bold block text-sm text-zinc-600 dark:text-gray-300 group-hover:text-amber-600">{{song.modified_name}}</router-link>
-
-            <!-- <h3 class=" text-white py-1 text-base justify-center">First instru</h3>
-            <p class="text-gray-400 text-sm">By @ax-production</p> -->
+        <div class="px-2 ">
+            <router-link :to="{name: 'song', params: {id: song.docID}}" class="font-medium flex text-sm lowercase  text-zinc-600 dark:text-gray-300 group-hover:text-amber-600 ">{{song.modified_name}}</router-link>
     
         </div>
       </div>
@@ -85,10 +67,24 @@
 </template>
 
 <script>
+import { mapActions,mapGetters } from "vuex"
 export default {
-    name:'SongItem',
+  name:'SongItem',
 
-    props:['song']
+  props:['song'],
+
+  computed: {
+      ...mapGetters(['playing'])
+  },
+
+  methods:{
+    ...mapActions(['newSong']),
+      ...mapActions(['toggleAudio']),
+      
+
+
+      
+  }
 
 }
 </script>
