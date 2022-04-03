@@ -20,7 +20,7 @@
         <!-- Scrub Container  -->
         <span @click.prevent="updateSeek" class=" block w-full h-2 rounded m-1 mt-2 bg-gray-300 relative cursor-pointer " >
           <!-- Player Ball -->
-          <span class="absolute top-neg-8 text-gray-800 text-lg dark:text-gray-400" :style="{left: playerProgress}" >
+          <span class="absolute -ml-1 top-neg-8 text-gray-800 text-lg dark:text-gray-400" :style="{left: playerProgress}" >
             <i class="fas fa-circle"></i>
           </span>
           <!-- Player Progress Bar-->
