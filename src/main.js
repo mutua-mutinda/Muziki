@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import veeValidatePlugin from './includes/validation'
 import { auth } from './includes/firebase'
+import Icon from './directives/icon'
 import './index.css'
 import './assets/main.css'
 
@@ -16,6 +17,7 @@ auth.onAuthStateChanged(() => {
         app.use(store)
         app.use(router)
         app.use(veeValidatePlugin)
+        app.directive('icon', Icon)
 
         app.mount('#app')
     }

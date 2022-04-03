@@ -22,10 +22,10 @@
         <!-- Main Content -->
         <section class="flex-grow container mx-auto">
           <div class="py-4 bg-gray-50 dark:bg-slate-800 rounded-lg shadow-sm relative flex flex-col">
-            <div class="px-6 pb-3 font-bold ">
+            <div class="px-6 pb-3 font-bold " v-icon-secondary="{icon: 'headphones-alt', right:true, amber:true}" >
               <span class="card-title text-md text-gray-700 dark:text-gray-300">Songs</span>
               <!-- Icon -->
-              <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
+
             </div>
             <!-- Playlist -->
             <div id="playlist" class="flex items-center justify-center sm:justify-start sm:items-start gap-1.5 flex-wrap w-full px-4 py-2">
@@ -40,9 +40,14 @@
 <script>
 import AppSongItem from '../components/SongItem.vue'
 import { songsCollection } from "/src/includes/firebase"
+import IconSecondary from '/src/directives/icon-secondary'
 export default {
   components: { AppSongItem },
   name: 'Home',
+
+  directives: {
+    'icon-secondary':IconSecondary
+  },
 
   data() {
     return {
