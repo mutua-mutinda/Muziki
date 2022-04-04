@@ -132,7 +132,7 @@ export default {
     beforeUnmount() {
       this.uploads.forEach((upload) => {
         upload.task.cancel();
-        console.log('ops cancelled');
+        // console.log('ops cancelled');
       })
     }
 

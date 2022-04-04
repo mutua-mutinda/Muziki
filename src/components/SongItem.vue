@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="group relative pb-1.5">
-              <img class="hidden sm:block" src="src/assets/img/profile-pic.jpg" alt="">
+              <img class="hidden sm:block" src="/src/assets/img/profile-pic.jpg" alt="">
           <div class="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 duration-700 transition justify-evenly">
             
             <button class="hover:scale-110 text-white outline-none  opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">

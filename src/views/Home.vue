@@ -3,16 +3,17 @@
     <div class="flex flex-col min-h-full">
           <!-- Introduction -->
         <section class="mb-8 py-20 text-white text-center relative">
-          <div class="hidden dark:inline flex-grow absolute inset-0 w-full h-full box-border bg-contain introduction-bg"
+          <div class="hidden dark:inline flex-grow absolute inset-0 w-full h-full box-border bg-contain introduction-bg z-10"
             style="background-image: url(/src/assets/img/song-header.png);">
           </div>
           <div class="dark:hidden flex-grow absolute inset-0 w-full h-full bg-cover introduction-bg"
             style="background-image: url(/src/assets/img/header.png)">
             </div>
-          <div class="container mx-auto">
+            <div class="absolute inset-0 bg-slate-700 opacity-70 h-full w-full z-0"></div>
+          <div class="relative container mx-auto">
             <div class="text-white main-header-content ">
-              <h1 class="font-bold text-5xl mb-5 dark:text-gray-300">Listen to Great Music!</h1>
-              <p class="w-full md:w-8/12 mx-auto dark:text-gray-300"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dolor mollis, congue augue non, venenatis elit. Nunc justo eros, suscipit ac aliquet imperdiet, venenatis et sapien. Duis sed magna pulvinar, fringilla lorem eget, ullamcorper urna. </p>
+              <h1 class="font-bold text-4xl mb-5 dark:text-gray-300">Listen to Great Music!</h1>
+              <p class="w-full md:w-8/12 mx-auto font-medium text-amber-300 text-lg">Muziki! The medicine for your heart</p>
             </div>
           </div>
 
@@ -77,7 +78,7 @@ export default {
 
       if(bottomOfWindow) {
         this.getSongs();
-        console.log('bottomOfWindow');
+        // console.log('bottomOfWindow');
       }
       
 
