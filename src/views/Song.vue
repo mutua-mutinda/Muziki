@@ -5,15 +5,16 @@
         <div class="absolute inset-0 w-full h-full box-border bg-contain music-bg"
           style="background-image: url(/src/assets/img/song-header.png)">
         </div>
-        <div class="container mx-auto flex items-center">
+         <div class="absolute inset-0 bg-slate-700 dark:opacity-70 h-full w-full z-0"></div>
+        <div class="container px-4 mx-auto flex items-center">
           <!-- Play/Pause Button -->
-          <button @click.prevent="newSong(song)" type="button" class="z-50 h-16 w-16 text-3xl bg-white text-black rounded-full
+          <button @click.prevent="newSong(song)" type="button" class="z-50 h-12 w-12 leading-4 text-xl bg-white text-black rounded-full
             focus:outline-none">
             <i class="fas fa-play "></i>
           </button>
-          <div class="z-50 text-left ml-8">
+          <div class="z-50 text-left ml-4 flex-grow">
             <!-- Song Info -->
-            <div class="text-md font-bold dark:text-gray-300">{{song.modified_name}}</div>
+            <div class="text-xs sm:text-sm font-medium dark:text-gray-300">{{song.modified_name}}</div>
             <div class="text-sm dark:text-gray-300">{{song.genre}}</div>
           </div>
         </div>

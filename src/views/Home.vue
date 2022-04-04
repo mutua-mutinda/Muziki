@@ -9,7 +9,7 @@
           <div class="dark:hidden flex-grow absolute inset-0 w-full h-full bg-cover introduction-bg"
             style="background-image: url(/src/assets/img/header.png)">
             </div>
-            <div class="absolute inset-0 bg-slate-700 opacity-70 h-full w-full z-0"></div>
+            <div class="absolute inset-0 bg-slate-700 dark:opacity-70 h-full w-full z-0"></div>
           <div class="relative container mx-auto">
             <div class="text-white main-header-content ">
               <h1 class="font-bold text-4xl mb-5 dark:text-gray-300">Listen to Great Music!</h1>
