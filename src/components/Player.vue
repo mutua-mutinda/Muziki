@@ -12,7 +12,7 @@
         <span class="player-currenttime">{{seek}}</span>
       </div>
       <!-- Scrub -->
-      <div class="flex-grow w-7 leading-3 ml-2 player-scrub">
+      <div class="flex-grow leading-3 ml-6 player-scrub">
         <div v-if="currentSong.modified_name" class="flex justify-center -mt-6  text-base text-gray-700 dark:text-gray-300 " >
           <span class="song-title truncate text-sm lowercase">{{currentSong.modified_name}}</span> 
           <!-- <span class="song-artist text-sm lowercase ">(uploaded by {{currentSong.display_name}})</span> -->
