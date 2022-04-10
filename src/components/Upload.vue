@@ -57,7 +57,7 @@ export default {
 
             const files  = $event.dataTransfer ? [...$event.dataTransfer.files] : [...$event.target.files]
 
-            console.log(files);
+            // console.log(files);
 
 
             files.forEach((file) => {
@@ -89,7 +89,7 @@ export default {
                   this.uploads[uploadIdx].variant = 'bg-red-500'
                   this.uploads[uploadIdx].icon = 'fas fa-times'
                   this.uploads[uploadIdx].text_class = 'text-red-500'
-                  console.log(error);
+                  // console.log(error);
 
                 }, async () => {
                   const song = {
